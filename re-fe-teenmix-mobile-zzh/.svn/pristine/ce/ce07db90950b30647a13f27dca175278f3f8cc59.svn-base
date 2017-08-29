@@ -1,0 +1,56 @@
+import logger from 'w-logger';
+
+const log = logger('productCategories.models');
+import api from 'src/api/api.dev';
+
+function   *getproductCategories(){
+    return yield fetch(`${api.newproduct}`).then((response)=>{
+        return  response.json();
+    });
+}
+
+export  default  {
+    namespace: 'productCategories',
+    state: {
+        value: 0
+    },
+    reducers: {
+        set(state, { payload }){
+            log('reducers.set');
+            return {
+                ...state,
+                ...payload
+            };
+        }
+    },
+    effects: {
+        *getImageData({ payload }, { call, put, select }){
+            log('effects.getImageData');
+            let imagesData=yield call(getproductCategories);
+           
+            // let jsondata=yield put({
+            //     type: ImagesData
+            // });
+            //  let jsondata=yield put({
+            //     type: ImagesData
+            // });
+
+            yield put({
+                type: 'set',
+                payload:{imagesData}
+            });
+            
+        },
+        *reload(){
+            log('effects.reload');
+        }
+    },
+    subscriptions: {
+        init ({ dispatch }, done) {
+            log('subscriptions.init');
+            dispatch({
+                type: 'getImageData'
+            });
+        }
+    }
+}

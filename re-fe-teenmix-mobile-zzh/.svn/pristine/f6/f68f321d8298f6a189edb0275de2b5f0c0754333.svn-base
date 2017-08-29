@@ -1,0 +1,34 @@
+:global{
+    #productList{
+        width: 100%;
+        height: auto;
+        dl{
+            
+            width: 48%;
+            height: 174px;
+            background: #eeeced;
+            overflow: hidden;
+            float: left;
+            margin:1%;
+            display: flex;
+            dt{
+                flex:1;
+                margin-top:30px;
+                img{
+                    width: 156px;
+                    height: 120px;
+                }
+            }
+            dd{
+                flex:1;
+                margin-right:30px;
+                p.text{
+                    text-align: center;
+                    line-height: 174px;
+                    font-size:26px;
+                    color:#333333;
+                     }
+            }
+        }
+    }
+};

@@ -1,0 +1,209 @@
+:global{
+  .carousel-container{
+     position: relative;
+     .carousel-mask{
+         position: absolute;
+         width: 100%;
+         top:0;
+         height: 100vh;
+         background-color: rgba(0,0,0,0.3);
+         z-index: 8;
+             img.hand{
+                width: 60vw;
+                margin: 0 auto;
+                display: block;
+                margin-top: 35vh;
+             }
+     }  
+     .mask-dontpass{
+         display: block;
+         position: absolute;
+         width: 100%;
+         top:0;
+         height: 100vh;
+        background: rgba(0,0,0,0); 
+         z-index: 7;
+    
+     }
+
+     #productsCarousel{
+        width: 75%;
+        margin: 0 auto;
+        padding: 28px 38px;
+        background-color: #fefefe;
+        position: relative;
+
+      
+         .carousel-wrap{
+          /*  height: 665px;*/
+             height: 60vh;
+            -webkit-box-shadow:0 0 60px #999;  
+             -moz-box-shadow:0 0 60px #999;  
+             box-shadow:0 0 60px #999;  
+             position: relative;
+             .slider-list{
+              height: 60vh!important;
+             }
+
+             .loading{
+               width: 100%;
+               height:60vh;
+               background:white;
+               position: absolute;
+               top:0;
+               left: 0;
+               right: 0;
+               bottom: 0;
+               z-index: 2;
+               img{
+                  display: block;
+                  width:130px;
+                  height: 130px;
+                  margin: 0 auto;
+                  padding-top: 20vh;
+               }
+             }
+             img.carousel-pic{
+               height: 60vh;
+               display: block;
+             }
+             .circle1{
+                border:3px solid white;
+                width: 1.5vh;
+                height: 1.5vh;
+                border-radius: 50%;
+                -moz-border-radius: 50%;    
+                -webkit-border-radius: 50%;
+                background: #037CCD;
+                position: absolute;
+                right: 14.5%;
+                top:37%;
+             }
+
+             .circle2{
+                border:3px solid white;
+                width: 1.5vh;
+                height: 1.5vh;
+                border-radius: 50%;
+                -moz-border-radius: 50%;    
+                -webkit-border-radius: 50%;
+                background: #037CCD;
+                position: absolute;
+                right: 14.5%;
+               bottom: 15%;
+             }
+
+               
+
+             .blink {  
+              animation:fade 3000ms infinite;  
+              -webkit-animation:fade 3000ms infinite;  
+             }  
+
+
+
+
+
+             .box-shadow{  
+             -webkit-box-shadow:0 0 10px 5px #037CCD;  
+             -moz-box-shadow:0 0 10px 5px #037CCD;  
+             box-shadow:0 0 10px 5px #037CCD;  
+             } 
+             .line1{
+              position: absolute;
+               right: 14.5%;
+               top:37%;
+               width: 29%;
+                .text{
+                  position: absolute;
+                  bottom: 10%;
+                  left:5%;
+                  font-size: 16px;
+                  color:#037CCD;
+
+                }
+             }
+
+             .line2{
+               position: absolute;
+                right: 14.5%;
+                bottom: 4%;
+                width: 29%;
+                .text{
+                  position: absolute;
+                  bottom: 10%;
+                  left:5%;
+                  font-size: 16px;
+                  color:#037CCD;
+
+                }
+             }
+
+             a.link1{
+                position: absolute;
+                right: 3%;
+                top:25%;
+                display: block;
+                background: url(/images/otherspic/transparent.png) repeat;
+                width: 45%;
+                height: 19vh;
+                z-index: 6;
+             } 
+             a.link2{
+                position: absolute;
+                right: 3%;
+                bottom: 2%;
+                display: block;
+                background: url(/images/otherspic/transparent.png) repeat;
+                width: 45%;
+                height: 23vh;
+                z-index: 6;
+             }
+
+      /*      .line1{
+                width: 26%;
+                height: 22%;
+                position: absolute;
+                right: 18%;
+                top:40.5%;
+                
+                .text{
+                  position: absolute;
+                  bottom: 3%;
+                  left:2%;
+                  font-size: 18px;
+                  color:#037CCD;
+
+                }
+
+                &:after{
+                       content:"";
+                       width:91%;
+                       height: 2px;
+                       background: #0996e6;
+                       position: absolute;
+                       bottom: 0;
+
+                   }
+               &:before{
+                      content:"";
+                      width: 2px;
+                      height: 100%;
+                      background: #0996e6;
+                      position: absolute;
+                         transform:rotate(9deg);
+                      right: 0;
+                  }
+            }*/
+            .center-img{
+                 img{
+                     width: 100%;
+                     display: block;
+                 }
+            }
+         }
+      
+        }  
+     }
+};
+

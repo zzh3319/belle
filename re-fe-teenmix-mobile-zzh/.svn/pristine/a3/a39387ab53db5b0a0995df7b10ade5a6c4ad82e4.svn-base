@@ -1,0 +1,137 @@
+import React, { Component, PropTypes } from 'react';
+import { Link } from 'react-router';
+// import Slider from 'react-slick'
+import { connect } from 'dva';
+import { Carousel } from 'antd-mobile';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+
+class ProductsListNav extends Component {
+   constructor(props) {
+      super(props)
+      this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+      this.changeNavColor=this.changeNavColor.bind(this);
+      
+      this.state={
+        initNvaIndex:this.props.initNvaIndex||1,
+      }
+  
+    }
+    changeNavColor(index,type){
+      this.setState({
+         initNvaIndex:index,
+      })
+
+      this.props.changeInitCategorieCallBack(type)
+    }
+   /* componentDidMount() {
+       let index=window.location.search.split("=")[1];
+      
+    }*/
+    render() {
+        let  nav=[
+          {
+           "name":"潮酷派对",
+           "type":"coolParty",
+           "index":1
+          },
+          {
+           "name":"商务会议",
+           "type":"businessConference",
+           "index":2
+          },
+          {
+           "name":"青春校园",
+           "type":"youthCampus",
+           "index":3
+          },
+          {
+           "name":"街头运动",
+           "type":"streetSports",
+           "index":4
+          },
+          {
+           "name":"户外休闲",
+           "type":"outdoorRecreation",
+           "index":5
+          },
+          {
+           "name":"甜蜜约会",
+           "type":"sweetDate",
+           "index":6
+          },
+          {
+           "name":"时尚男鞋",
+           "type":"fashionMenShoes",
+           "index":7
+          }
+        ];
+        let length=nav.length;
+          
+          let index=window.location.search.split("=")[1];
+       
+          const settings = {
+            dots: false,
+            infinite: true,
+            speed: 700,
+            autoplay:false,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            selectedIndex:this.props.initNvaIndex>4?1:0, 
+        
+          };
+  return (
+    <div>
+        <div id='productsListNav'  span={24}>
+            <Carousel  {...settings}>
+                 <div>
+                   <ul className="carousel-panel">
+                     {
+                       nav.map((value,index)=>{
+                             if (index<=3) {
+                                return(
+                                 <li key={value.index} onClick={()=>{this.changeNavColor(value.index,value.type)}}  type={value.type}><a className={this.state.initNvaIndex==value.index?"click-a":""} href="#">{value.name}</a></li>
+                                )
+                             }
+                       })
+                     }
+                      
+                   </ul>
+                 </div>
+                 <div>
+                     <ul className="carousel-panel">
+                     {
+                       
+                       nav.map((value,index)=>{
+                            if (index>3) {
+                               return(
+                                <li key={value.index} className="shadow"  onClick={()=>{this.changeNavColor(value.index,value.type)}}  type={value.type}><a className={this.state.initNvaIndex==value.index?"click-a":""} href="#">{value.name}</a></li>
+                               )
+                            }
+                            
+                       })
+                     }
+                     </ul>
+                 </div>
+            </Carousel>
+        </div>
+    </div>
+
+      
+
+  );
+    }
+  
+                    
+                     
+                     
+                     
+
+}
+
+ProductsListNav.propTypes = {
+    location: PropTypes.object,
+};
+
+export default connect(function (state) {
+    return { ...state.productCategories };
+})(ProductsListNav);

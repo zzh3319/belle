@@ -1,0 +1,12 @@
+:global{
+   #newListing{
+     .pic-list{
+        width: 100%;
+        img{
+             width: 96%;
+             display: block;
+             margin: 2%;
+        }
+     }
+   }
+};

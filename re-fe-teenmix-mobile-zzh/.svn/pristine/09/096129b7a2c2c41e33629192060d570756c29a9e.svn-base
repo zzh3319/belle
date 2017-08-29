@@ -1,0 +1,35 @@
+:global{
+  #brandstory{
+    .title-slogan{
+      width: 100%;
+      display: flex;
+      margin-bottom: 38px;
+  
+        .slogan-pic{
+            flex: 1;
+            border: 1px;
+            img{
+                display: block;
+                margin:0 auto;
+                height: 170px;
+            }
+        }
+    }
+
+    #textDescribe{
+        margin: 0 38px 0;
+       p{
+         line-height: 40px;
+         font-size: 26px;
+         color: #666;
+
+       }
+       p:nth-child(1){
+          margin-bottom:40px;
+       }
+
+    }
+  }
+}
+
+

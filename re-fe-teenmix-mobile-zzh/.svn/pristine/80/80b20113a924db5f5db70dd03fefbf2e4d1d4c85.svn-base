@@ -1,0 +1,21 @@
+import React from 'react'
+import { Link } from 'react-router';
+const Aboutus = (props) => {
+
+  return (
+     <div id="aboutus">
+        <div className="leftimg">
+          <Link to={props.link1?props.link1:"#"}>
+            <img src="images/indexpic/aboutus/index_story.jpg" alt=""/>
+          </Link>
+        </div>
+        <div className="rightimg">
+          <Link  to={props.link2?props.link2:"#"}>
+             <img src="images/indexpic/aboutus/index_contact.jpg" alt=""/>
+          </Link>
+        </div>
+     </div>
+  )
+}
+
+module.exports = Aboutus;

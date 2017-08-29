@@ -1,0 +1,202 @@
+import React, { Component, PropTypes } from 'react';
+import { Link } from 'react-router';
+import Title from 'src/components/title';
+import { connect } from 'dva';
+import { Carousel } from 'antd-mobile';
+// import  Carousel  from 'nuka-carousel';
+ // import  Slider   from 'react-slick';
+
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+
+class ProductsCarousel extends Component {
+   constructor(props) {
+      super(props)
+      this.loadCarousel=this.loadCarousel.bind(this);
+      this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+      this.stop=this.stop.bind(this);
+      this.move=this.move.bind(this);
+      this.preventDefault=this.preventDefault.bind(this);
+      this.removeMask=this.removeMask.bind(this);
+      this.loadImgNum=0;
+      this.state={
+        ifShowMaskToggle:true,
+        initCategorie:this.props.initCategorie,
+        ifImgLoadFinish:false,
+      }
+    }
+
+
+    preventDefault(e){e.preventDefault();};
+     /***禁止滑动***/
+    stop(){
+             document.getElementById('productCategories').style.overflow='hidden';        
+             document.addEventListener("touchmove",this.preventDefault,false);//禁止页面滑动
+     }
+     /***取消滑动限制***/
+    move(){
+             document.getElementById('productCategories').style.overflow='';//出现滚动条
+             document.removeEventListener("touchmove",this.preventDefault,false);        
+     }
+    removeMask(){
+        this.move();
+         this.setState({
+           ifShowMaskToggle:false,
+        },()=>{
+            if (!this.state.ifShowMaskToggle) {/*解决点透事件  在mask 下面在加了一个mask-dontpass*/
+               setTimeout(()=>{
+               document.getElementsByClassName('mask-dontpass')[0].style.display="none";
+               },420)
+            }
+        }) 
+    }
+  /*  componentDidMount() {
+       
+       // this.stop();
+    }*/
+    componentWillReceiveProps(){
+
+      this.setState({
+        ifImgLoadFinish:false
+      })
+      this.loadImgNum=0;
+    }
+    componentWillUnmount(){
+      this.move();
+    }
+    loadCarousel(){
+         
+         let imagesData=this.props.imagesData;
+         if (!imagesData) {
+               return ;
+         }
+         let initCategorie=this.props.initCategorie;
+
+         let currentImageData=imagesData[initCategorie];
+         let length=currentImageData.length;
+       
+          if (this.loadImgNum!==length) {
+              for(let i=0;i<length;i++){
+                    let imgObj= new Image();
+                    let that=this;
+              
+                    imgObj.onerror=imgObj.onload=function(){//预加载图片
+                       that.loadImgNum++;
+                       if (that.loadImgNum===length) {
+                       
+                            that.setState({
+                                 ifImgLoadFinish:true,
+                            })
+                       }
+                    }
+                    imgObj.src=currentImageData[i];
+              }
+          }
+           
+
+         /*到时候文字描述是和图片一样的json格式
+           所以遍历的时候 直接遍历图片就可以  得到描述文字的内容
+           如  describe[this.state.initCategorie][0]
+         */
+        
+           let carouselDom =[];
+           for (let i = 0,length=currentImageData.length; i <length; i++) {
+               if(initCategorie==="fashionMenShoes"){
+                     carouselDom.push(/*时尚男鞋没有包包链接*/
+                           <div className="center-img" key={i}>
+                             <img className="carousel-pic" src={currentImageData[i]} alt=""/>
+                             <div className="blink  box-shadow circle1 "></div> 
+                          
+                             <div className="line1">
+                               <img src="/images/otherspic/line.png" alt=""/>
+                               <p className="text">英伦女单鞋</p>
+                             </div>
+                             <a  className="link1" href="http://mall.belle.net.cn/ftl/main/home?fromsource=1007&bCode=TM&urlTo=productDetails&productNo=20170701198&salePrice=199&tagPrice=399&promotion=1"></a>
+                           {/*  <a  className="link2" href="http://mall.belle.net.cn/ftl/main/home?fromsource=1007&bCode=TM&urlTo=productDetails&productNo=20170701200&salePrice=199&tagPrice=399&promotion=1"></a>*/}
+                         </div>
+                      )
+               }else{
+                  carouselDom.push(
+                        <div className="center-img" key={i}>
+                          <img className="carousel-pic" src={currentImageData[i]} alt=""/>
+                          <div className="blink  box-shadow circle1 "></div> 
+                       
+                          <div className="line1">
+                            <img src="/images/otherspic/line.png" alt=""/>
+                            <p className="text">英伦女单鞋</p>
+                          </div>
+                            <div className="blink  box-shadow circle2 "></div>
+                          <div className="line2">
+                            <img src="/images/otherspic/line.png" alt=""/>
+                            <p className="text">英伦女单鞋</p>
+                          </div>   
+
+                          <a  className="link1" href="http://mall.belle.net.cn/ftl/main/home?fromsource=1007&bCode=TM&urlTo=productDetails&productNo=20170701198&salePrice=199&tagPrice=399&promotion=1"></a>
+                          <a  className="link2" href="http://mall.belle.net.cn/ftl/main/home?fromsource=1007&bCode=TM&urlTo=productDetails&productNo=20170701200&salePrice=199&tagPrice=399&promotion=1"></a>
+                      </div>
+                   )
+               }
+          
+           }
+  
+         return carouselDom;
+    }
+   
+    render() {
+   
+         const settings = {
+           dots: false,
+           infinite: true,
+           speed: 700,
+           autoplay:false,
+           slidesToShow: 1,
+           slidesToScroll: 1,
+           adaptiveHeight:true,
+           arrows:false
+         
+         };
+
+         let  nav=this.props.navList?this.props.navList:{};
+         
+          return (
+            <div className="carousel-container">
+                {
+                  this.state.ifShowMaskToggle?
+                     <div onTouchEnd={()=>{this.removeMask()}} className="carousel-mask">
+                        <img  className="hand"  src="/images/otherspic/alert_2.png" alt=""/>
+                     </div> 
+                  :""
+                }
+                  <div  className="mask-dontpass">
+                  </div> 
+                  <Title backgroundColor="titleBck"  showLine="false" title={nav[this.props.initCategorie].name}/>
+                <div id='productsCarousel'  >
+                    <div className="carousel-wrap">
+                       {
+                         !this.state.ifImgLoadFinish?
+                         <div className='loading'>
+                            <img src="/images/otherspic/loading.gif" alt=""/>
+                         </div>:""
+                       }
+                         
+                         <Carousel   {...settings}>
+                          {
+                            this.loadCarousel()
+                          }
+                         </Carousel>
+                    </div>
+                </div>
+            </div>
+          )
+    }
+  
+}
+
+ProductsCarousel.propTypes = {
+    location: PropTypes.object,
+};
+
+export default connect(function (state) {
+
+    return { ...state.productCategories };
+    
+})(ProductsCarousel);

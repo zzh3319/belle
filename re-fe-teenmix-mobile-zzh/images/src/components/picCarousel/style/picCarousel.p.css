@@ -1,0 +1,87 @@
+:global{
+    #pic-carousel{
+        position: absolute;
+        width: 100%;
+        height: 100vh;
+        /*安卓端有bug 所以用100vh（高度大于满屏）*/
+        z-index: 8;
+        background: url("/images/otherspic/fancybox_overlay.png");
+        top:0;
+       /*  .carousel{
+            z-index: 9;
+           width: 96%;
+           padding:2%;
+           background: white;
+         .bacg  img{
+               width: 100%;
+               height:549px;  
+               display: block;
+           }
+       } */
+       .show-Index{
+         width: 100%;
+         color: white;
+         font-size: 26px;
+         text-align: center;
+         line-height: 40px;
+
+       }
+       .carousel{
+            /* background: white; */
+            position: fixed;
+            z-index: 10;
+            width: 100%;
+            top: 20vh;
+
+            .picShow {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                /* height: 40vh; */
+                /* padding: 10px;  */
+                /* background-color: #fff; */
+
+                img{
+                    width: 100vmin; 
+                    height: 80vmin; 
+                    display: block;
+                }
+            }
+
+
+            .show-toggle{
+                margin-top:2vh;
+                z-index: 10;
+                width: 100%;
+                color: white;
+                font-size: 16px;
+                text-align: center;
+                .toggle-hand{
+                  img{
+                     width: 130px;
+                     height: 130px;
+                     margin-top: 5px;
+                  }
+                }
+                .toggle-btn{
+                     width: 100%;
+                     height: 36px;
+                    b{
+                        display: inline-block;
+                        img{
+                         height: 36px;
+                        }
+                    }
+                    span{
+                           font-size: 30px;
+                           display: inline-block;
+                           height: 36px;
+                           margin:0 40px 0 40px;
+                           line-height: 36px;
+                    }
+                }
+            }
+       }
+   
+    }
+};

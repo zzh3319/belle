@@ -1,0 +1,98 @@
+import React, { Component, PropTypes } from 'react';
+import MainLayout from 'src/layout/MainLayout';
+import { connect } from 'dva';
+import ProductsListNav from "./ProductsListNav"
+import ProductsCarousel from "./ProductsCarousel"
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+
+import '../style/productListNav.p.css';
+import '../style/productCategories.p.css';
+import '../style/productsCarousel.p.css';
+import '../style/circle.css';
+
+class ProductCategories extends Component {	
+	  constructor() {
+	  	super()
+	    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+	    this.changeInitCategorieCallBack=this.changeInitCategorieCallBack.bind(this);
+	    
+	   let haseInitCategorie=window.location.search.split("index=")[1];
+	   let  nav={
+	     "coolParty":{
+	      "name":"潮酷派对",
+	      "type":"coolParty",
+	      "index":1
+	     },
+
+	     "businessConference":{
+	      "name":"商务会议",
+	      "type":"businessConference",
+	      "index":2
+	     },
+
+	     "youthCampus":{
+	      "name":"青春校园",
+	      "type":"youthCampus",
+	      "index":3
+	     },
+
+	     "streetSports":{
+	      "name":"街头运动",
+	      "type":"streetSports",
+	      "index":4
+	     },
+
+	     "outdoorRecreation":{
+	      "name":"户外休闲",
+	      "type":"outdoorRecreation",
+	      "index":5
+	     },
+
+	     "sweetDate":{
+	      "name":"甜蜜约会",
+	      "type":"sweetDate",
+	      "index":6
+	     },
+
+	     "fashionMenShoes":{
+	      "name":"时尚男鞋",
+	      "type":"fashionMenShoes",
+	      "index":7
+	     }
+	   };
+	   
+	    this.state={
+              initCategorie:haseInitCategorie||'coolParty',
+              initNvaIndex:haseInitCategorie?nav[haseInitCategorie].index:1
+	    };
+	  }
+
+	  changeInitCategorieCallBack(type){
+
+	  	
+           this.setState({
+           	  initCategorie:type,
+           })
+	  }
+	  render() {
+
+	  		return (
+	  			<div id="productCategories" >
+	  	            <MainLayout>
+	  	                <ProductsListNav initNvaIndex={this.state.initNvaIndex} changeInitCategorieCallBack={this.changeInitCategorieCallBack}/>
+	  	                
+	  	                <ProductsCarousel initCategorie={this.state.initCategorie}/>
+	  			    </MainLayout>
+	  			</div>
+	  		)
+	  }
+	
+}
+
+
+ProductCategories.propTypes = {
+   location: PropTypes.object,
+};
+export default connect(function (state) {
+    return { ...state.brandstory };
+})(ProductCategories);

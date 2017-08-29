@@ -1,0 +1,202 @@
+import React, { Component, PropTypes } from 'react';
+import { Picker, List, WhiteSpace } from 'antd-mobile';
+import { createForm } from 'rc-form';
+import { connect } from 'dva';
+import MainLayout from 'src/layout/MainLayout';
+import Title from 'src/components/title';
+import '../style/contactus.p.css'
+// 如果不是使用 List.Item 作为 children
+const Areashow = props => (
+  <div id="area-toggle"
+    onClick={props.onClick}
+  >
+      <div>{
+        (function(){
+            let areaText=props.extra.split(",");
+            return(
+              <p className="text-content">
+                   <span>{areaText[0]}</span>
+                   <span className="icon"><img src="/images/otherspic/arrow_down.png" alt=""/></span>
+
+                   <span className="text2">{areaText[1]}</span>
+                   <span className="icon"><img src="/images/otherspic/arrow_down.png" alt=""/></span>
+              </p>
+              )
+        })()
+      }</div>
+  </div>
+);
+
+class Contactus extends React.Component {
+  constructor(props){
+      super(props);
+      this.changeJsnData=this.changeJsnData.bind(this);
+      this.onConfirmHandler=this.onConfirmHandler.bind(this);
+      this.showCurrentShops=this.showCurrentShops.bind(this);
+      this.changeAreaHandle=this.changeAreaHandle.bind(this);
+      this.currentShopData=null;
+      this.state = {
+        addressData:null,
+        cols: 2,/*设置列*/
+        currentProvince:1,
+        currentCity:0,
+        currentShop:null,
+        pickerValue: ["1","1-0"],
+      };
+    
+  }
+  componentDidMount() {
+         this.node.scrollIntoView();
+  }
+
+  onConfirmHandler(value){/*["1", "1-0"]第一个省 第一个市*/
+   let addressData=this.props.addressData;
+     if (!addressData) {
+         return 
+     }
+   
+    let currentProvince=+value[0]; 
+    let currentCity=value[1].split("-")[1];
+    this.setState({
+      currentProvince:currentProvince,
+      currentCity:currentCity,
+    })
+
+
+  }
+  changeAreaHandle(value){
+   this.setState({
+     pickerValue:value
+   })
+  }
+  showCurrentShops(){
+    let addressData=this.props.addressData;
+    if (!addressData) {
+         return
+    }
+       let currentProvince=this.state.currentProvince;
+       let currentCity=this.state.currentCity;  
+       let currentShop=addressData[currentProvince].cities[currentCity].shops;
+       let currentShopDom=currentShop.map((value,index)=>{
+           return(
+            <p key={index}>{value.shop}</p>
+            )
+       })
+       return currentShopDom; 
+  }
+  changeJsnData() {//转化为以下json格式
+    // const district=[
+    //   {
+    //     "value": "340000",
+    //     "label": "安徽省",
+    //     "children": [{
+    //       "value": "341500",
+    //       "label": "六安市",
+    //     },
+    //     {
+    //           "value": "340500",
+    //           "label": "马鞍山市",
+    //       }]
+    //   },
+    //   {
+    //     "value": "340001",
+    //     "label": "安徽省1",
+    //     "children": [{
+    //       "value": "341501",
+    //       "label": "六安市1",
+    //     },
+    //     {
+    //           "value": "340501",
+    //           "label": "马鞍山市1",
+    //       }]
+    //   }
+    // ]
+       let  addressData=this.props.addressData;/*所有的数据*/
+       if (addressData) {
+         let  districtArr=[];
+         for(let data in addressData){
+           districtArr.push({
+             "value":data,
+             "label":addressData[data].province,
+             "children":[]
+           })
+         }
+         for (let i = 0,length=districtArr.length; i <length;  i++) {
+             for (let k = 0; k < addressData[i+1].cities.length; k++) {
+                  districtArr[i].children.push({
+                    "value": i+1+"-"+k,
+                    "label":addressData[i+1].cities[k].city ,
+                  })
+             }
+         }
+      
+         return districtArr;
+       }
+       return null;
+  }
+  render() {
+  
+   
+    const { getFieldProps } = this.props.form;
+
+    return (
+      <div id="contactus"  ref={node => this.node = node}>
+        <MainLayout>
+        <Title paddingTop="paddingTop" borderTop="borderTop" showLine="false" title="联系我们"/>
+
+        <div id="address">
+          <div className="qrcode">
+            <img src="/images/otherspic/code.jpg" alt=""/>    
+          </div>
+          <div className="text">
+            <p>E-mainl：service@teenmix.com.cn</p>
+            <p>地址：广东省深圳市南山区兰香一街22F</p>
+            <p>热线：400-878-668</p>
+          </div>
+        </div>
+        
+          {
+            this.changeJsnData()?<div>
+            <List className="picker-list">
+              <Picker extra="请选择(可选)"
+                data={this.changeJsnData()}
+                title="选择地区"
+                {...getFieldProps('district', {
+                  initialValue: ['1', '1-0'],
+                })}
+                cols={this.state.cols}
+                onOk={(value)=>{this.onConfirmHandler(value)}}
+                onDismiss={e => console.log('dismiss', e)}
+                extra=""
+                value={this.state.pickerValue}
+                onChange={(value)=>{this.changeAreaHandle(value)}} 
+              >
+               { /*<List.Item arrow="horizontal">选择地区（多列，联动）</List.Item>*/}
+                  <Areashow>选择地区（自定义 children）</Areashow>
+              </Picker>
+            </List>
+          </div>:""
+          }
+          {
+            <div className="area-list">
+             {
+                 this.showCurrentShops()
+             }
+            </div>
+          }
+            </MainLayout>
+      </div>
+      );
+  }
+}
+
+const contactusWrapper = createForm()(Contactus);
+
+contactusWrapper.propTypes = {
+    location: PropTypes.object,
+};
+
+export default connect(function (state) {
+
+    return { ...state.contactus };
+})(contactusWrapper);

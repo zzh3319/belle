@@ -1,0 +1,179 @@
+import React, { Component, PropTypes } from 'react';
+import { Link } from 'react-router';
+import Title from 'src/components/title';
+import { connect } from 'dva';
+import { Carousel } from 'antd-mobile';
+// import  Carousel  from 'nuka-carousel';
+ // import  Slider   from 'react-slick';
+
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+
+class ProductsCarousel extends Component {
+   constructor(props) {
+      super(props)
+      this.loadCarousel=this.loadCarousel.bind(this);
+      this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+      this.stop=this.stop.bind(this);
+      this.move=this.move.bind(this);
+      this.preventDefault=this.preventDefault.bind(this);
+      this.removeMask=this.removeMask.bind(this);
+      this.state={
+        ifShowMaskToggle:true,
+        initCategorie:this.props.initCategorie,
+      }
+    }
+    preventDefault(e){e.preventDefault();};
+     /***禁止滑动***/
+    stop(){
+             document.getElementById("productCategories").style.overflow='hidden';        
+             document.addEventListener("touchmove",this.preventDefault,false);//禁止页面滑动
+     }
+     /***取消滑动限制***/
+    move(){
+             document.getElementById("productCategories").style.overflow='';//出现滚动条
+             document.removeEventListener("touchmove",this.preventDefault,false);        
+     }
+    removeMask(){
+        this.move();
+         this.setState({
+           ifShowMaskToggle:false,
+        }) 
+    }
+    componentDidMount() {
+      this.stop();
+    }
+    loadCarousel(){
+         
+         let imagesData=this.props.imagesData;
+         if (!imagesData) {
+               return ;
+         }
+         let initCategorie=this.props.initCategorie;
+
+         let currentImageData=imagesData[initCategorie];
+         
+         /*到时候文字描述是和图片一样的json格式
+           所以遍历的时候 直接遍历图片就可以  得到描述文字的内容
+           如  describe[this.state.initCategorie][0]
+         */
+           let carouselDom =[]
+           for (var i = 0,length=currentImageData.length; i <length; i++) {
+               carouselDom.push(
+                     <div className="center-img" key={i}>
+                       <img className="carousel-pic" src={currentImageData[i]} alt=""/>
+                       <div className="blink  box-shadow circle1 "></div> 
+                    
+                       <div className="line1">
+                         <img src="/images/otherspic/line.png" alt=""/>
+                         <p className="text">英伦女单鞋</p>
+                       </div>
+                         <div className="blink  box-shadow circle2 "></div>
+                       <div className="line2">
+                         <img src="/images/otherspic/line.png" alt=""/>
+                         <p className="text">英伦女单鞋</p>
+                       </div>   
+                   </div>
+                )
+           }
+
+         return carouselDom;
+    }
+   
+    render() {
+   
+         const settings = {
+           dots: false,
+           infinite: true,
+           speed: 700,
+           autoplay:false,
+           slidesToShow: 1,
+           slidesToScroll: 1,
+           adaptiveHeight:true,
+           arrows:false
+         
+         };
+
+         let  nav={
+           "coolParty":{
+            "name":"潮酷派对",
+            "type":"coolParty",
+            "index":1
+           },
+
+           "businessConference":{
+            "name":"商务会议",
+            "type":"businessConference",
+            "index":2
+           },
+
+           "youthCampus":{
+            "name":"青春校园",
+            "type":"youthCampus",
+            "index":3
+           },
+
+           "streetSports":{
+            "name":"街头运动",
+            "type":"streetSports",
+            "index":4
+           },
+
+           "outdoorRecreation":{
+            "name":"户外休闲",
+            "type":"outdoorRecreation",
+            "index":5
+           },
+
+           "sweetDate":{
+            "name":"甜蜜约会",
+            "type":"sweetDate",
+            "index":6
+           },
+
+           "fashionMenShoes":{
+            "name":"时尚男鞋",
+            "type":"fashionMenShoes",
+            "index":7
+           }
+         };
+ 
+          return (
+            <div className="carousel-container">
+                {
+                  this.state.ifShowMaskToggle?
+                  <div onTouchEnd={()=>{this.removeMask()}} className="carousel-mask">
+                     <img  className="hand"  src="/images/otherspic/alert_2.png" alt=""/>
+                  </div>:""
+                }
+
+                  <Title backgroundColor="titleBck"  showLine="false" title={nav[this.props.initCategorie].name}/>
+                <div id='productsCarousel'  >
+                    <div className="carousel-wrap">
+                         <Carousel   {...settings}>
+                          {
+                            this.loadCarousel()
+                          }
+                         </Carousel>
+                    </div>
+                </div>
+   
+            </div>
+          )
+    }
+  
+                    
+                     
+                     
+                     
+
+}
+
+ProductsCarousel.propTypes = {
+    location: PropTypes.object,
+};
+
+export default connect(function (state) {
+
+    return { ...state.productCategories };
+    
+})(ProductsCarousel);
