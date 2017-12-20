@@ -1,0 +1,371 @@
+@import "../../wxParse/wxParse.wxss";
+
+.container {
+  padding-bottom: 100rpx;
+}
+
+swiper {
+  height: 820rpx;
+}
+
+.slide-image {
+  width: 100%;
+  height: 100%;
+}
+
+.zan-panel {
+  position: relative;
+}
+
+.share {
+  overflow: hidden;
+  float: right;
+  width: 140rpx;
+  display: flex;
+  align-items: flex-start;
+  height:50rpx;
+}
+
+.share image {
+  vertical-align: middle;
+}
+
+.share text {
+  line-height:36rpx;
+  vertical-align: middle;
+}
+
+.goodsDetail {
+  float: left;
+}
+
+.panel {
+  position: relative;
+  padding: 16px;
+  border-bottom: 2rpx solid #dfdfdf;
+}
+
+.title {
+  display: block;
+  width: 100%;
+  font-size: 32rpx;
+  margin-bottom: 20rpx;
+}
+
+.now {
+  display: inline-block;
+  color: #231815;
+  font-size: 40rpx;
+  font-weight: bold;
+  height: 48rpx;
+  line-height: 48rpx;
+  margin-right: 16rpx;
+}
+
+.old {
+  display: inline-block;
+  color: #666;
+  font-size: 28rpx;
+  height: 48rpx;
+  line-height: 48rpx;
+  text-decoration: line-through;
+}
+
+.shareBtn {
+  position: absolute;
+  color: #f83c4b;
+  font-size: 30rpx;
+  right: 30rpx;
+  font-weight: 500;
+}
+
+.select-wrap view {
+  font-size: 28rpx;
+}
+
+.select {
+  color: #999;
+  margin-right: 20rpx;
+}
+
+.detailtitle {
+  color: black;
+  font-size: 36rpx;
+  text-align: center;
+  padding: 10rpx 30rpx 30rpx 30rpx;
+  border-bottom: 2rpx solid #dfdfdf;
+}
+
+/* 弹窗的确定按钮样式 */
+
+.confirmBtn {
+  z-index: 60000;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 110rpx;
+  line-height: 110rpx;
+  text-align: center;
+  font-size: 32rpx;
+  color: #fff;
+  font-weight: 600;
+  background-color: #f83c4b;
+  border-radius: 0;
+}
+
+/* 关闭立即购买的按钮样式 */
+
+.close_buy {
+  width: 30rpx;
+  height: 30rpx;
+  z-index: 100;
+  position: absolute;
+  right: 30rpx;
+  top: 30rpx;
+}
+
+.log_box {
+  width: 100%;
+  padding: 30rpx 30rpx;
+  margin: 0 auto;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+/* 产品图片样式 */
+
+.product_img {
+  float: left;
+  width: 200rpx;
+  height: 200rpx;
+  margin-right: 20rpx;
+  margin-bottom: 10rpx;
+  border: 2rpx solid #dadada;
+  border-radius: 14rpx;
+  position: relative;
+  bottom: 90rpx;
+  z-index: 1000;
+}
+
+.newPrice {
+  color: #231815;
+  font-size: 40rpx;
+  font-weight: bold;
+  display: inline-block;
+  margin-right: 20rpx;
+  position: relative;
+  bottom: 10rpx;
+}
+
+.oldPrice {
+  display: inline-block;
+  color: #898989;
+  font-size: 28rpx;
+  text-decoration: line-through;
+  position: relative;
+  bottom: 10rpx;
+}
+
+.dlog_selected {
+  color: #898989;
+  position: relative;
+  left: 10rpx;
+  bottom: 16rpx;
+  font-size: 40rpx;
+}
+
+.quantity {
+  position: relative;
+  bottom: 60rpx;
+  padding-bottom: 10rpx;
+}
+
+.dlog_color {
+  width: 100%;
+  margin-top: 0;
+  color: #898989;
+  font-size: 30rpx;
+  position: relative;
+  right: 224rpx;
+}
+
+.dlog_title {
+  width: 100%;
+  margin: 20rpx 0;
+  margin-top: 0;
+  color: #7f7f7f;
+  font-size: 30rpx;
+}
+
+.zan-label {
+  height: auto;
+  width: 124rpx;
+  margin-top: 15rpx;
+  position: relative;
+  left: 100rpx;
+  top: -55rpx;
+}
+
+.zan-label::after {
+  content: none;
+}
+
+.zan-label[disabled] {
+  border: 1px dashed rgba(0, 0, 0, 0.3);
+  background-color: transparent !important;
+}
+
+.zan-quantity--small {
+  float: right;
+  margin-top: 14rpx;
+  margin-right: 362rpx;
+}
+
+/* 详情页底部按钮样式 */
+
+.bot-bar {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 106rpx;
+  background-color: #fff;
+  border-top: 1rpx solid #e5e5e5;
+}
+
+.left-go {
+  float: left;
+  width: 18%;
+  height: 100%;
+}
+
+.backIndex {
+  width: 44rpx;
+  height: 80rpx;
+  margin-top: 12rpx;
+  margin-left: 46rpx;
+}
+
+.bot-bar-btn {
+  float: right;
+  width: 82%;
+  height: 100%;
+  background-color: #ccc;
+}
+
+.bot-bar-btn .right {
+  float: left;
+  width: 100%;
+  height: 100%;
+  line-height: 100rpx;
+  text-align: center;
+  font-size: 32rpx;
+  color: #fff;
+  font-weight: 600;
+  overflow: hidden;
+  background-color: #f83c4b;
+}
+
+.left-go > view {
+  position: relative;
+  float: left;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* 分享图标 */
+
+.share_icon {
+  padding-right:20rpx;
+  width: 36rpx;
+  height: 36rpx;
+/*  position: absolute;
+  bottom: 44rpx;
+  right: 100rpx;*/
+}
+
+/* 分享按钮弹出层样式 */
+
+/*使屏幕变暗  */
+
+.commodity_screen {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #000;
+  opacity: 0.4;
+  overflow: hidden;
+  z-index: 1000;
+  color: #fff;
+}
+
+/*对话框 */
+
+.commodity_attr_box {
+  height: 450rpx;
+  width: 100%;
+  overflow: hidden;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 2000;
+  background: #fff;
+  padding-top: 20rpx;
+  transition: all 0.4s ease;
+}
+
+.share_box {
+  display: flex;
+  padding: 60rpx;
+  text-align: center;
+}
+
+.share_box > .btn-share {
+  position: static;
+  display: block;
+  margin: 0;
+  padding: 0;
+  width: 50%;
+  box-sizing: border-box;
+  /*font-size:18px;*/
+  text-align: center;
+  text-decoration: none;
+  line-height: auto;
+  border-radius: 0;
+  -webkit-tap-highlight-color: transparent;
+  overflow: hidden;
+  color: #000;
+  background: none;
+}
+
+.btn-share::after {
+  width: 0;
+  height: 0;
+  content: "";
+}
+
+.weChat, .share_pic {
+  width: 140rpx;
+  height: 140rpx;
+}
+
+.weChat_text, .share_pic_text {
+  display: block;
+  font-size: 30rpx;
+  color: #808080;
+}
+
+.close_share {
+  width: 110%;
+  height: 100rpx;
+  line-height: 100rpx;
+  position: fixed;
+  bottom: 0;
+  right: -32rpx;
+  color: #898989;
+  border-radius: 0;
+}
+.wxParse-p image{
+  width: 100%;
+}

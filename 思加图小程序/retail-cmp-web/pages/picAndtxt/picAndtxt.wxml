@@ -1,0 +1,13 @@
+<import src="/wxParse/wxParse.wxml" />
+<view class='picAndtxt'>
+  <view class='head_des'>
+    <text class='title'>{{actTitle}}</text>
+    <!-- <text>时间是新品</text>
+    <text>限时9折！</text> -->
+  </view>
+  <view class='date_txt'>
+    <view  style="background:{{tagName?'':'none'}}"  class='trangle_title'>{{tagName}}</view>
+    <text class='date'>{{publishTimeMsg}}</text>
+  </view>
+<template is="wxParse" data="{{wxParseData:article.nodes}}" />
+</view>

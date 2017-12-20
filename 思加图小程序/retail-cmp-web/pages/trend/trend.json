@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "发现",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "trend": "../../../component/trend/trend"
+  },
+  "window": {
+    "backgroundColor": "#ebebeb"
+  }
+}

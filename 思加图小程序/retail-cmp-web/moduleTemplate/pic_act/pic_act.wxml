@@ -1,0 +1,18 @@
+<template name="pic_act">
+  <navigator url='{{urlList}}'>
+    <view class='pic_act'>
+      <image class="pic_act_pic" src='{{imgList}}' mode='widthFix'></image>
+
+      <!-- <image class="pic_act_pic" src='{{imgList}}' mode='widthFix'></image> -->
+      <view class='pic_act_title'>
+        <view class='act_title_text'>
+           {{title}}
+        </view>
+        <view class='date_txt'>
+          <view wx:if="{{act_tag}}" class='trangle_title'>{{act_tag}}</view>
+          <text class='date'>{{publis_time}}</text>
+        </view>
+      </view>
+    </view>
+  </navigator>
+</template>

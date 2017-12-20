@@ -1,0 +1,19 @@
+<template name="addressDetail">
+    <view class='add_detail'>
+        <view class='editor'>
+            <image class="address_edit" src="/images/address/edit_address.png" bindtap="loadAddress" data-shipping-id="{{shippingId}}"></image>
+        </view>
+        <view class='add_msg'>
+            <view class='name_tel'>
+                <text>{{receiverName}}</text>
+                <text>{{receiverPhone}}</text>
+            </view>
+            <view>{{province}}{{city}}{{district}}{{address}}</view>
+        </view>
+        <view class='t-center icon'>
+            <label class="radio">
+                <radio value="{{shippingId}}" checked="{{selectedId === shippingId ? true : false}}"/>
+            </label>
+        </view>
+    </view>
+</template>

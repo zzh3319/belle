@@ -1,0 +1,166 @@
+ .order-item-box {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  background: #fff;
+  width: 100%;
+} 
+
+.order-item-head-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.order-item-head-detail-box {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  margin: 20rpx;
+}
+
+.order-item-order-sn {
+  font-size: 26rpx;
+  color: #231815;
+  padding-top: 6rpx;
+}
+
+.order-item-mark {
+  font-size: 28rpx;
+  color: #231815;
+  margin-right: 26rpx;
+  padding-top: 6rpx;
+  font-weight: 600;
+}
+
+.order-item-inner-box {
+  display: flex;
+  background: #fff;
+  padding: 20rpx;
+  width: 100%;
+  position: relative;
+}
+
+.order-item-img {
+  width: 180rpx;
+  height: 180rpx;  
+}
+
+.order-item-content-box {
+  padding-left: 20rpx; 
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  flex-grow: 1;
+}
+
+.order-item-sub-content-box {
+  display: flex;
+  padding-right: 20rpx;
+   justify-content: space-between; 
+   align-items: center; 
+}
+
+.order-item-name {
+  font-size: 25rpx;
+  margin-right: 200rpx;
+  width: 420rpx;
+  display: flex;
+  position: relative;
+  bottom: 10rpx;
+}
+
+.order-item-price {
+  color: #231815;
+  font-weight: 500;
+  font-size: 28rpx;
+  position: absolute;
+  top: 30rpx;
+  right: 27rpx;
+}
+
+.order-item-discount-price {
+  color: #898989;
+  text-decoration: line-through;
+  font-size: 28rpx;
+  position: absolute;
+  right: 27rpx;
+  top: 70rpx;
+}
+
+.order-item-color {
+  color: #999;
+  font-size: 26rpx;
+  padding-left: 2rpx;
+}
+
+.order-item-size {
+  color: #999;
+  font-size: 26rpx;
+  position: absolute;
+  left: 315rpx;
+}
+
+.order-item-num {
+  color: #999;
+  font-size: 26rpx;
+  position: absolute;
+  right: 23rpx;
+}
+
+.order-item-total {
+  line-height: 80rpx;
+  height: 80rpx;
+  background: #fff;
+  width: 100%;
+  border-bottom: 1px solid #e0e0e0;
+   border-top: 1px solid #e0e0e0;
+}
+
+.order-item-goodsNum {
+  
+  font-size: 30rpx;
+  font-weight: 500;
+  float: right;
+    margin-right: 20rpx;
+}
+
+.order-item-totalPrice {
+
+  font-size: 30rpx;
+    float: right;
+    margin-right: 20rpx;
+}
+
+.order-item-cost {
+    float: right;
+  color: #231815;
+  font-size: 30rpx;
+  font-weight: 600;
+  margin-right: 20rpx;
+}
+
+.order-item-btn {
+  height:100rpx;
+  background: #fff;
+  width: 100%;
+  padding: 18rpx 0rpx;
+    border-bottom: 20rpx solid #f5f5f5;
+}
+
+.orderBtn {
+  margin-right: 28rpx;
+  color: #231815;
+  margin-left: 0;
+  float: right;
+  border: 1rpx solid #898989;
+
+  height: 51rpx;
+  font-size: 20rpx;
+  text-align: center;
+}
+.itemAll{
+  border-bottom: 17rpx solid #f5f5f5;
+}

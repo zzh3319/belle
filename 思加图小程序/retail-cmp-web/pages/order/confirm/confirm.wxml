@@ -1,0 +1,219 @@
+<import src="../../template/orderList/orderList.wxml" />
+<import src="../../template/addressDetail/addressDetail.wxml" />
+<!-- 提货方式 -->
+<!-- 顶部选项卡切换 -->
+<view class="body">
+  <view class="nav bc_white">
+    <view class='take_way'>提货方式</view>
+    <!--<view class="default {{navId == 0 ? 'active' : ''}} self" bindtap="navClick" data-id="0">门店自提</view>-->
+    <view class="default {{navId == 1 ? 'active' : ''}}  post" bindtap="navClick" data-id="1">快递</view>
+  </view>
+  <!-- 门店自提 -->
+  <view class="{{navId == 0 ?'show':'hidden'}}">
+    <view class='content-item1'>
+      <block wx:for="{{goodsList}}" wx:key="{{index}}">
+        <template is="order-list" data="{{...item, index: index, payAmount: payAmount, isHideTotal: true}}" />
+      </block>
+      <block wx:if="{{ vipAmount }}">
+        <view class='order-item t-left'>
+            <text>会员折扣</text>
+            <view class="fr c-gray lh50">-￥{{vipAmount}}</view>
+        </view>
+      </block>
+      <view class='order-item-total'>
+          <text class='order-item-cost'>￥{{payAmount}}</text>
+          <text class='order-item-totalPrice'>合计</text>
+          <text class='order-item-goodsNum'>共{{totalCount}}件商品</text>
+      </view>
+    </view>
+  </view>
+  <view class="{{navId == 1 ? 'show' : 'hidden'}}">
+    <!-- 添加收货地址 -->
+    <view class="add" bindtap="showModal" data-shipping-id="{{consignee_info.whether_default === 3 ? '' : consignee_info.shipping_id}}">
+      <block wx:if="{{consignee_info}}">
+        <view>
+          <view class='showaddMessage_people'>
+            <text class='fz_color receive-people'>收 货 人：</text>
+            <text>{{consignee_info.receiverName}}</text>
+          </view>
+          <view class='showaddMessage_people'>
+            <text class='fz_color receive-people'>联系电话：</text>
+            <text> {{consignee_info.receiverPhone}}</text>
+          </view>
+          <view class='showaddMessage_add'>
+            <text class='fz_color'>收货地址：</text>
+            <text>{{consignee_info.province}} {{consignee_info.city}} {{consignee_info.district}} {{consignee_info.address}}</text>
+          </view>
+        </view>
+      </block>
+      <view wx:else>
+        <view class="t-left">
+          <view class="left c-gray">+</view>
+          <view class="text hide">添加收货地址</view>
+        </view>
+      </view>
+    </view>
+    <view class='content-item'>
+      <block wx:for="{{goodsList}}" wx:key="{{index}}">
+        <template is="order-list" data="{{...item, index: index, payAmount: payAmount, isHideTotal: true}}" />
+      </block>
+      <block wx:if="{{ vipAmount }}">
+        <view class='order-item t-left'>
+            <text>会员折扣</text>
+            <view class="fr c-gray lh50">-￥{{vipAmount}}</view>
+        </view>
+      </block>
+     <view class='order-item-total'>
+          <text class='order-item-cost'>￥{{payAmount}}</text>
+          <text class='order-item-totalPrice'>合计</text>
+          <text class='order-item-goodsNum'>共{{totalCount}}件商品</text>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 底部合计价格和提交按钮 -->
+<view class='order_footer'>
+    <text class='total_num'>合计</text>
+    <text class='total_price'>￥{{payAmount}}</text>
+    <button class='submit_order' bindtap="createOrder" wx:if="{{isConfirm}}">提交订单</button>
+</view>
+<!-- 底部收货地址弹出框 -->
+<view class="commodity_screen" bindtap="hideModal" wx:if="{{showModalStatus}}"></view>
+<block wx:if="{{showModalStatus}}">
+  <block wx:if="{{consignee_info && isList}}">
+    <view animation="{{animationData}}" class="addressMessage">
+      <view class='gd_add'>
+        <view class='title'>
+          <text class='add_txt'>收货地址</text>
+          <image class='delete' src='/images/address/close_address.png' bindtap="hideModal"></image>
+        </view>
+        <scroll-view class='scroll' scroll-y="true">
+          <radio-group bindchange="addressChange">
+            <block wx:for="{{addressList}}">
+              <template is="addressDetail" data="{{...item, selectedId:addressSelectedId}}" />
+            </block>
+          </radio-group>
+        </scroll-view>
+        <view class='addNewAdd'>
+          <text>添加新地址</text>
+          <image class='gd_add_addimg' src='/images/address/add.png' bindtap="addNewAddress"></image>
+        </view>
+        <view class='confirm' bindtap="selectAddress">确定</view>
+      </view>
+    </view>
+  </block>
+  <block wx:else>
+    <!-- 新增收货地址 -->
+    <view animation="{{animationData}}" class="commodity_attr_box">
+      <!-- 信息部分开始 -->
+      <block wx:if="{{!addressEditData}}">
+        <form bindsubmit="addAddress">
+          <view class="info">
+            <!-- 添加收货地址 -->
+            <view class='address'>
+              <text class='add_text'>添加收货地址</text>
+              <image class='close_address' src='/images/address/close_address.png' bindtap="closeAddDialog"></image>
+            </view>
+            <!-- 姓名部分 -->
+            <view class="item">
+              <text class='receive_person address_text'>收货人</text>
+              <view class="right">
+                <input type="text" name="receiver_name" placeholder="姓名" maxlength="15" />
+              </view>
+            </view>
+            <!-- 联系电话部分 -->
+            <view class="item">
+              <text class='address_text'>联系电话</text>
+              <view class="right">
+                <input name="receiver_phone" type="number" placeholder="11位手机号" maxlength="11" />
+              </view>
+            </view>
+            <!-- 收货地址部分 -->
+            <view class="item">
+              <text class='address_text'>所在地区</text>
+              <picker class="right" mode="multiSelector" bindchange="bindRegionPickerChange" bindcolumnchange="bindRegionColumnChange" value="{{regionIndex}}" range="{{regionArray}}" range-key="text">
+                <view class="picker">
+                  {{regionArray[0][regionIndex[0]].text||'请选择'}}, {{regionArray[1][regionIndex[1]].text||'请选择'}}, {{regionArray[2][regionIndex[2]].text||'请选择'}}
+                  <input name="province_code" value="{{regionArray[0][regionIndex[0]].code}}" hidden="true" />
+                  <input name="city_code" value="{{regionArray[1][regionIndex[1]].code}}" hidden="true" />
+                  <input name="district_code" value="{{regionArray[2][regionIndex[2]].code}}" hidden="true" />
+                  <input name="province" value="{{regionArray[0][regionIndex[0]].text}}" hidden="true" />
+                  <input name="city" value="{{regionArray[1][regionIndex[1]].text}}" hidden="true" />
+                  <input name="district" value="{{regionArray[2][regionIndex[2]].text}}" hidden="true" />
+                </view>
+              </picker>
+            </view>
+            <!-- 详细地址部分 -->
+            <view class="item">
+              <text class='address_text'>详细地址</text>
+              <view class="right">
+                <input name="address" type="text" placeholder="请填写" maxlength="60" />
+              </view>
+            </view>
+            <view class="setItem">
+              <checkbox-group name="whether_default" bindchange="">
+                <label class="checkbox">
+                  <checkbox value="1" checked="checked"></checkbox>
+                  设为默认地址
+                </label>
+              </checkbox-group>
+            </view>
+          </view>
+          <!-- 底部保存按钮部分 -->
+          <button class="save" formType="submit">保存</button>
+        </form>
+      </block>
+      <block wx:else>
+        <form bindsubmit="updateAddress">
+          <input type="text" name="shipping_id" hidden="true" value="{{addressEditData.shippingId}}" />
+          <view class="info">
+            <!-- 编辑收货地址 -->
+            <view class='address'>
+              <text class='add_text'>编辑收货地址</text>
+              <image class='close_address' src='/images/address/close_address.png' bindtap="closeEditDialog"></image>
+            </view>
+            <!-- 姓名部分 -->
+            <view class="item">
+              <text class='receive_person address_text'>收货人</text>
+              <view class="right">
+                <input type="text" name="receiver_name" placeholder="姓名" maxlength="15" value="{{addressEditData.receiverName}}" />
+              </view>
+            </view>
+            <!-- 联系电话部分 -->
+            <view class="item">
+              <text class='address_text'>联系电话</text>
+              <view class="right">
+                <input name="receiver_phone" type="number" placeholder="11位手机号" maxlength="11" value="{{addressEditData.receiverPhone}}" />
+              </view>
+            </view>
+            <!-- 收货地址部分 -->
+            <view class="item">
+              <text class='address_text'>所在地区</text>
+              <picker class="right" mode="multiSelector" bindchange="bindRegionPickerChange" bindcolumnchange="bindRegionColumnChange" value="{{regionIndex}}" range="{{regionArray}}" range-key="text">
+                <view class="picker">
+                  {{isPickerChange ? (regionArray[0][regionIndex[0]].text||'请选择') : addressEditData.province}}, {{isPickerChange ? (regionArray[1][regionIndex[1]].text||'请选择') : addressEditData.city}}, {{isPickerChange ? (regionArray[2][regionIndex[2]].text||'请选择') : addressEditData.district}}
+                  <input name="province_code" value="{{isPickerChange ? regionArray[0][regionIndex[0]].value : addressEditData.provinceCode}}" hidden="true" />
+                  <input name="city_code" value="{{isPickerChange ? regionArray[1][regionIndex[1]].value : addressEditData.cityCode}}" hidden="true" />
+                  <input name="district_code" value="{{isPickerChange ? regionArray[2][regionIndex[2]].value : addressEditData.districtCode}}" hidden="true" />
+                  <input name="province" value="{{isPickerChange ? regionArray[0][regionIndex[0]].text : addressEditData.province}}" hidden="true" />
+                  <input name="city" value="{{isPickerChange ? regionArray[1][regionIndex[1]].text : addressEditData.city}}" hidden="true" />
+                  <input name="district" value="{{isPickerChange ? regionArray[2][regionIndex[2]].text : addressEditData.district}}" hidden="true" />
+                </view>
+              </picker>
+            </view>
+            <!-- 详细地址部分 -->
+            <view class="item">
+              <text class='address_text'>详细地址</text>
+              <view class="right">
+                <input name="address" type="text" placeholder="请填写" maxlength="60" value="{{addressEditData.address}}" />
+              </view>
+            </view>
+            <input name="whether_default" hidden="true" value="{{addressEditData.whetherDefault}}" />
+          </view>
+          <!-- 底部保存按钮部分 -->
+          <button class="save" formType="submit">保存</button>
+        </form>
+      </block>
+    </view>
+  </block>
+</block>

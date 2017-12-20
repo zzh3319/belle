@@ -1,0 +1,16 @@
+@import "/moduleTemplate/slides/slides.wxss";
+@import "/moduleTemplate/pro_list/pro_list.wxss";
+@import "/moduleTemplate/image_map/image_map.wxss";
+@import "/moduleTemplate/video/video.wxss";
+@import "/moduleTemplate/pic_act/pic_act.wxss";
+
+/**index.wxss**/
+
+.index_goodsList {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  background: #efefef;
+  flex-wrap: wrap;
+}
+

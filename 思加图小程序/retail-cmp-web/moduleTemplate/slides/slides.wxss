@@ -1,0 +1,15 @@
+.carsoul image{
+  width: 100%;
+  height: 900rpx;
+}
+.carsoul swiper{
+  height: 900rpx;
+}
+.fixImg{
+  width: 100%;
+  height: 146rpx;
+}
+.fixImg image{
+  width: 100%;
+  height: 100%;
+}

@@ -1,0 +1,14 @@
+<!-- 组件模板 -->
+  <navigator class="trend" url="{{data.actType ? 'trend' : '/pages/picAndtxt/picAndtxt?contentId=' + data.id}}">
+    <block wx:if="{{data.actType}}">
+        <!-- poster="{{data.coverImg}}"  -->
+        <video class="img-view" src="{{data.cmpContentDetailsDto.videoUrl}}" controls></video>
+    </block>
+    <block wx:else><image class='img-view' mode='widthFix' src='{{data.coverImg}}'></image></block>
+    <view class='title-bar'>
+      <view  style="background:{{data.tagName?'':'none'}}"  class='title-tag'>{{data.tagName}}</view>
+      <text class='title'>{{data.actTitle}}</text>
+      <view class='sub-title'>{{data.publishTimeMsg}}</view>
+    </view>
+    <slot></slot>
+  </navigator>

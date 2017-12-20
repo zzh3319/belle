@@ -1,0 +1,23 @@
+/* pages/payment/payment.wxss */
+.container
+{
+  width: 100%;
+  position: relative;
+}
+.pay_icon
+{
+  width: 160rpx;
+  height: 160rpx;
+  position: absolute;
+  top: 29%;
+  left: 39%;
+}
+.pay_text
+{
+  font-size: 34rpx;
+  color: #898989;
+  position: absolute;
+  top: 45%;
+  left: 27%;
+  font-weight: 600;
+}

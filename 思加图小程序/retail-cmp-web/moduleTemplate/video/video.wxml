@@ -1,0 +1,14 @@
+<template name="video">
+  <view class="video">
+    <video id="index_video" controls='true' objectFit="cover" src="{{urlList}}"></video>
+  </view>
+  <view class='video_title'>
+    <view class='act_title_text'>
+      {{title}}
+    </view>
+    <view class='date_txt'>
+      <view style="background:{{act_tag?'':'none'}}" class='trangle_title'>{{act_tag}}</view>
+      <text class='date'>{{publis_time}}</text>
+    </view>
+  </view>
+</template>

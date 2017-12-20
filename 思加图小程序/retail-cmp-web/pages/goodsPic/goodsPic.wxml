@@ -1,0 +1,7 @@
+<!--pages/goodsPic/goodsPic.wxml-->
+<view class='container'>
+    <image class="show-img" mode="widthFix" src="{{imgPath}}" />
+    <canvas class="build-img" canvas-id="buildImg" hidden="{{hide}}" />
+    <view class="t-center c-gray">保存到相册可以分享</view>
+    <button class='goods_btn' bindtap="saveImg">保存图片</button>
+</view>

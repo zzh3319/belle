@@ -1,0 +1,36 @@
+.zan-label {
+  display: inline-block;
+  font-size: 12px;
+  height: 28px;
+  line-height: 28px;
+  color: #000;
+  border: 1rpx solid #999;
+  padding: 0px 10px;
+  border-radius: 2px;
+  margin-right: 10px;
+  box-sizing: border-box;
+  vertical-align: middle;
+  text-align: center;
+}
+/* 颜色/尺码 按钮选中时的样式 */
+.zan-label--primary {
+  color: #fff;
+  background: #f83c4b;
+  border: 1rpx solid #f83c4b;
+}
+/* 颜色/尺码 按钮没有选中时的样式 */
+.zan-label--disabled {
+  color: #000; 
+  background: #f0f0f0;
+  border: 1rpx solid #f0f0f0;
+}
+.zan-label--small {
+  font-size: 11px;
+  height: 16px;
+  line-height: 16px;
+  padding: 0px 3px;
+}
+.zan-label--plain.zan-label--primary {
+  color: #f44;
+  background: #fff;
+}

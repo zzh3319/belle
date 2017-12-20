@@ -1,0 +1,129 @@
+/* .order-item-box{
+  display: flex; 
+  flex-direction: column;
+  align-items: center;
+  margin: 17rpx 0rpx;
+  background: #fff;
+  width: 100%;
+} */
+.order-item{
+  padding: 25rpx 20rpx;
+  height: 100rpx;
+  font-size:30rpx;
+  background: #fff;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.order-item-inner-box {
+  display: flex;
+  /* align-items: center; */
+  background: #ececec;
+  padding: 18rpx 20rpx;
+  width: 100%;
+  position: relative;
+}
+
+.order-item-img {
+  width: 180rpx;
+  height: 180rpx;
+}
+
+.order-item-content-box {
+  /* padding-left: 20rpx;  */
+  padding: 20rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  flex-grow: 1;
+  /* height: 180rpx; */
+}
+
+.order-item-sub-content-box {
+  display: flex;
+  padding-right: 20rpx;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  position: relative;
+  top: 20rpx;
+}
+
+.order-item-name {
+  font-size: 25rpx;
+  margin-right: 105rpx;
+  width: 422rpx;
+  display: flex;
+  position: relative;
+  bottom: 12rpx;
+}
+
+.order-item-price {
+  color: #231815;
+  font-weight: 600;
+  font-size: 27rpx;
+  position: absolute;
+  top: 40rpx;
+  right: 20rpx;
+}
+
+.order-item-discount-price {
+  color: #898989;
+  text-decoration: line-through;
+  font-size: 26rpx;
+  position: absolute;
+  right: 20rpx;
+  top: 78rpx;
+}
+
+.order-item-color {
+  color: #898989;
+  font-size: 26rpx;
+  padding-left: 2rpx;
+  padding-right: 30rpx;
+}
+
+.order-item-size {
+  color: #898989;
+  font-size: 26rpx;
+  position: absolute;
+  left: 90rpx;
+}
+
+.order-item-num {
+  color: #999;
+  font-size: 26rpx;
+  position: absolute;
+  right: 14rpx;
+}
+
+.order-item-total {
+  /* display: flex; *//* align-items: center; */
+  background: #fff;
+  width: 100%;
+  height: 100rpx;
+  border-bottom: 1px solid #e0e0e0;
+  position: relative;
+  top: 0rpx;
+  padding: 25rpx 20rpx;
+}
+
+.order-item-goodsNum {
+  font-size: 30rpx;
+  font-weight: 500;
+  float: right;
+  margin-right: 30rpx;
+}
+
+.order-item-totalPrice {
+  font-size: 30rpx;
+  float: right;
+  margin-right: 20rpx;
+}
+
+.order-item-cost {
+  color: #231815;
+  font-size: 30rpx;
+  /*margin-right: 30rpx;*/
+  font-weight: 600;
+  float: right;
+}

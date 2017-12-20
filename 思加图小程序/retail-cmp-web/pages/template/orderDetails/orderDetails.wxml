@@ -1,0 +1,25 @@
+<template name="order-item">
+  <navigator open-type="reLaunch" url="{{url}}">
+    <view class='order-item-inner-box'>
+      <view>
+        <image class="order-item-img" src="{{itemImageUrl}}" mode="widthFix"></image>
+      </view>
+
+      <view class='order-item-content-box'>
+
+        <view>
+          <text class='order-item-name'>{{productName}}</text>
+          <text class='order-item-price'>￥{{itemSalePrice }}</text>
+          <text class='order-item-discount-price'>￥{{itemTagPrice}}</text>
+        </view>
+
+        <view class='order-item-sub-content-box'>
+          <text class='order-item-color'>{{mallColorName}}</text>
+          <text class='order-item-size'>{{sizeNo}}码</text>
+          <text class='order-item-num'>X{{quantity}}</text>
+        </view>
+      </view>
+
+    </view>
+  </navigator>
+</template>

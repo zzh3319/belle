@@ -1,0 +1,27 @@
+<import src="../template/order_item/order-item.wxml" />
+<view class='order-head'>
+  <view class='order-head-content-box  {{bottomStyleList[0]}}' data-typeid="0" bindtap="chooseType">
+    <text class="content-box-name">全部</text>
+  </view>
+  <view class='order-head-content-box {{bottomStyleList[1]}}' data-typeid="1" bindtap="chooseType">
+    <text class="content-box-name">待付款</text>
+  </view>
+  <view class='order-head-content-box {{bottomStyleList[2]}}' data-typeid="2" bindtap="chooseType">
+    <text class="content-box-name">待发货</text>
+  </view>
+  <view class='order-head-content-box {{bottomStyleList[3]}}' data-typeid="3" bindtap="chooseType">
+    <text class="content-box-name">待收货</text>
+  </view>
+  <view class='order-head-content-box {{bottomStyleList[4]}}' data-typeid="4" bindtap="chooseType">
+    <text class="content-box-name">已收货</text>
+  </view>
+
+  
+</view>
+
+<!-- 引入订单列表模板 -->
+<scroll-view class='content-item' scroll-x="{{false}}" scroll-y="{{true}}">
+  <block wx:for="{{goodsList}}" wx:key="{{index}}">
+    <template is="order-item" data="{{...item}}" />
+  </block>
+</scroll-view>

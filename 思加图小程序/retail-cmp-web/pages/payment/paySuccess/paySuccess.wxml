@@ -1,0 +1,18 @@
+<!--pages/payment/payment.wxml-->
+<view class='container'>
+    <image class='pay_icon' src='../../../images/icons/pay.png'></image>
+    <text class='pay_success'>支付成功</text>
+    <text class='thinks'>感谢您的信任</text>
+     <!-- 订单详情 -->
+      <view class='order_detail'>
+         <navigator url="/pages/order/details/details?orderNo={{orderNo}}">
+           <button>订单详情</button>
+         </navigator>
+      </view>
+
+     <!-- 返回首页 -->
+      <view class='back_index'>
+           <button bindtap="goIndex" >返回首页</button>
+      </view>
+
+</view>

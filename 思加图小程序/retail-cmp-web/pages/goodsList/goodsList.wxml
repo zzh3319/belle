@@ -1,0 +1,8 @@
+<!--pages/fashion/fashion.wxml-->
+<import src="/moduleTemplate/pro_list/pro_list.wxml" />
+<!--商品列表 -->
+    <view class='index_goodsList'>
+       <block wx:for="{{goodsItem}}" wx:for-index="index" wx:for-item="goodsItem" wx:key='index'>
+           <template is="pro_list" data="{{...goodsItem}}" />
+       </block>
+    </view>

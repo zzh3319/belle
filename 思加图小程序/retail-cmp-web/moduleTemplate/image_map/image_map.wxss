@@ -1,0 +1,11 @@
+
+ .image_map image{
+ width: 100%; 
+
+} 
+.image_map{
+  position: relative;
+}
+.image_map navigator{
+  position:absolute;
+}

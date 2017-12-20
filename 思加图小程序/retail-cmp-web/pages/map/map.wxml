@@ -1,0 +1,39 @@
+<!--logs.wxml-->
+
+<template name='map' scroll-x='true' scroll-y="false">
+  <scroll-view class='address'>
+    <view class="add_title">
+      <text class='shop_name'>
+       {{fullName}}
+      </text>
+    </view>
+    <view>
+      <view class='tel' style="display:{{tel?'block':'none'}}">
+        <text class='tel_txt'>电话:</text>
+        <text class='tel_num'>{{tel}}</text>
+      </view>
+      <view class='add'>
+        <view class='add_txt'>地址:</view>
+        <view class='add_message'>{{address}}</view>
+        <image bindtap="telHandler" data-tel='{{tel}}' style="display:{{tel?'inline-flex':'none'}}" class='add_img' src='/images/map/tel.png' mode="aspectFit"></image>
+      </view>
+      <view class='distance'>
+        <image class='dis_img' src='/images/map/distance.png' mode="aspectFit"></image>
+        <view class='kilo'>
+          <text>{{distance}}</text>
+          <text>km</text>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</template>
+
+
+<view class='map'>
+  <map id="map" longitude="{{centerLongtitude}}" latitude="{{centerLatitude}}" scale="13" bindcontroltap="controltap" markers="{{markers}}" bindmarkertap="markertap" bindregionchange="regionchange" show-location style="width: 100%; height: 300px;"></map>
+</view>
+
+
+<block wx:for="{{shops}}" wx:for-index="idx" wx:for-item="item">
+  <template is="map" data="{{...item}}" />
+</block>

@@ -1,0 +1,49 @@
+/* pages/payment/payment.wxss */
+.container
+{
+  width: 100%;
+  position: relative;
+}
+.pay_icon
+{
+  width: 184rpx;
+  height: 184rpx;
+  position: absolute;
+  top: 24%;
+  left: 23%;
+}
+.pay_success
+{
+  font-size: 36rpx;
+  color:#231815;
+  position: absolute;
+  top: 28%;
+  left: 52%;
+  font-weight: 600;
+}
+.thinks
+{
+  position: absolute;
+  left: 52%;
+  top: 33%;
+  color:#231815;
+  font-size: 30rpx;
+}
+/* 订单详情按钮 */
+.order_detail
+{
+  position: absolute;
+  left: 18%;
+  top:46%;
+  width: 220rpx;
+  color: #231815;
+}
+/* 回到首页按钮 */
+.back_index
+{
+   position: absolute;
+   right: 18%;
+   top:46%;
+   width: 220rpx;
+   color: #231815;
+}

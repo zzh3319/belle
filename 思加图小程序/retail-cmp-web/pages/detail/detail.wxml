@@ -1,0 +1,120 @@
+<import src="../../wxParse/wxParse.wxml" />
+<import src="../../component/quantity/index.wxml" />
+
+<view class="container">
+  <!-- 轮播图 -->
+  <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+    <block wx:for="{{imgUrls}}" wx:key="{{index}}">
+      <swiper-item>
+        <image src="{{item.imageSrc}}" class="slide-image" />
+      </swiper-item>
+    </block>
+  </swiper>
+
+  <view class="panel">
+    <text class="title">{{goodName}}</text>
+    <view>
+      <view class='goodsDetail'>
+        <text class="now">￥{{currentPrice}}</text>
+        <text class="old">￥{{originalPrice}}</text>
+      </view>
+      <view class='share' catchtap="showModal">
+        <view class='shareBtn'><image class='share_icon' src='/images/detail/share.png'></image><text>分享</text></view>
+      </view>
+    </view>
+  </view>
+  <view class="zan-panel">
+    <view style="padding: 10px 0;">
+      <view class="zan-panel-title detailtitle">商品详情</view>
+      <template is="wxParse" data="{{wxParseData:detail.nodes}}" />
+    </view>
+  </view>
+
+  <!-- 立即购买按钮的弹出层  -->
+  <view class="commodity_screen2" bindtap="hide" wx:if="{{showModalStatus2}}"></view>
+  <!-- 弹出框 -->
+  <view animation="{{animationData}}" class="dialog_container" wx:if="{{showModalStatus2}}">
+    <!-- 立即购买关闭按钮 -->
+
+    <image class="close_buy" src='/images/address/close_address.png' bindtap="hide"></image>
+
+    <view class="log_box" style="padding-top:40rpx;">
+      <image src="{{smpic}}" class="product_img" />
+      <view class="right">
+        <view>
+          <text class="newPrice">￥{{currentPrice}}</text>
+          <text class="oldPrice">￥{{originalPrice}}</text>
+        </view>
+        <view class="dlog_selected">
+          <text>已选：{{colorName}} {{kindSize}}</text>
+        </view>
+      </view>
+    </view>
+
+
+    <!-- 颜色选择按钮 -->
+    <view class="log_box">
+      <view>
+        <text class="dlog_color">颜色：</text>
+      </view>
+      <view class="zan-label {{current == index ? 'zan-label--primary' : 'zan-label--disabled'}}" wx:key="" wx:for="{{kinds}}" bindtap="tapKind" data-current="{{index}}" data-type="color">{{kinds[index].color_name}}</view>
+    </view>
+
+    <!-- 尺码选择按钮 -->
+
+    <view class="log_box">
+      <view>
+        <text class="dlog_title">尺码：</text>
+      </view>
+      <button class="zan-label {{nowSize == index ? 'zan-label--primary' : 'zan-label--disabled'}}" wx:key="" wx:for="{{kinds[current].mall_item_skus}}" bindtap="tapKind" data-current="{{index}}" data-type="size" disabled="{{kinds[current].mall_item_skus[index].available_qty ? false : true}}">{{kinds[current].mall_item_skus[index].size_mapping_value}}</button>
+    </view>
+
+    <!-- 数量选择按钮 -->
+    <view class="log_box">
+      <text class="dlog_title">数量：</text>
+      <view class="quantity">
+        <template is="zan-quantity" data="{{ ...quantity, componentId: 'quantity', size: 'small' }}" />
+      </view>
+
+    </view>
+
+    <button hidden="{{!goOrder}}" class="confirmBtn" bindtap="orderConfirm">确定</button>
+
+  </view>
+
+
+
+</view>
+
+
+<!-- 商品详情页底部按钮组 -->
+<view class="bot-bar">
+  <!-- 回到首页按钮 -->
+  <view class="left-go">
+    <image class="backIndex" bindtap="goIndex" src='/images/detail/backIndex.png'></image>
+
+  </view>
+
+  <!-- 立即购买按钮 -->
+  <view class="bot-bar-btn">
+    <view class="right" bindtap="show">立即购买</view>
+  </view>
+</view>
+
+<!-- 分享按钮弹框效果 -->
+<!-- 遮罩层 -->
+<view class="commodity_screen" bindtap="hideModal" wx:if="{{showModalStatus}}"></view>
+<!-- 弹出框 -->
+<view animation="{{animationData}}" class="commodity_attr_box" wx:if="{{showModalStatus}}">
+  <view class='share_box'>
+    <button class="btn-share" open-type="share">
+      <image class='weChat' src='/images/detail/weChat.png'></image>
+      <text class='weChat_text'>转发</text>
+    </button>
+    <button class="btn-share" bindtap="buildImage">
+      <image class='share_pic' src='/images/detail/share_icon.png'></image>
+      <text class='share_pic_text'>生成分享图片</text>
+    </button>
+  </view>
+  <button class="close_share" bindtap="hideModal">关闭</button>
+</view>

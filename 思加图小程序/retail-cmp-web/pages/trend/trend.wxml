@@ -1,0 +1,5 @@
+<!-- <import src="/moduleTemplate/pic_act/pic_act.wxml" /> -->
+
+<block wx:for="{{trendList}}" wx:key="{{index}}">
+  <trend data="{{item}}"></trend>
+</block>

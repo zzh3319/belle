@@ -1,0 +1,19 @@
+<!-- 这是自定义组件的内部WXML结构 -->
+
+<template name="slides">
+  <view class='carsoul'>
+    <swiper indicator-dots="true" autoplay="true" interval="5000" duration="1000">
+      <block wx:for="{{imgList}}" wx:key="i" wx:for-item="item">
+        <swiper-item data-imgIndex="{{index}}" class="banner">
+           <navigator hover-class="none" url="{{urlList[index]}}"> 
+          <!-- <navigator hover-class="none" url="index"> -->
+            <image src="{{item}}" mode='widthFix' class="slide-image" />
+          </navigator>
+        </swiper-item>
+      </block>
+    </swiper>
+    <view class='fixImg'>
+      <image src='http://retailp2.bellecdn.com/retail/2017/cmp/index/staccato.jpg'></image>
+    </view>
+  </view>
+</template>

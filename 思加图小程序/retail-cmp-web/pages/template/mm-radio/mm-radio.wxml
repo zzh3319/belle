@@ -1,0 +1,3 @@
+<template name="mm-radio">
+	  	<icon type="{{iconType}}" data-value-id="{{id}}" size="25" color="{{iconColor}}" bindtap="setDefault" />
+</template> 

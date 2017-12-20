@@ -1,0 +1,22 @@
+<!-- 这是自定义组件的内部WXML结构 -->
+<template name="pro_list">
+  <view class='pro_list'>
+    <navigator hover-class="none" url='{{link}}'>
+      <view class="goods_item">
+      <!-- <image class='trangle' src="/images/icons/trangle.png"></image> -->
+        <!-- <image src='{{imgList}}' class='goods_img'></image> -->
+       <image src='{{gridPic}}' class='goods_img'></image> 
+        <view class='goods_desc'>{{productName}}</view>
+        <view class='goods_text'>
+          <text class='current_money'>
+             <text class=''>￥</text>
+          <text class='current_num'>{{salePrice}}</text>
+          </text>
+          <text class='remove_money'>
+               <text>{{tagPrice}}</text>
+          </text>
+        </view>
+      </view>
+    </navigator>
+  </view>
+</template>

@@ -1,0 +1,105 @@
+<!--pages/mine/mine.wxml-->
+<view class='mine-container'>
+  <!-- 微信头像/昵称/积分部分 -->
+  <view class='head'>
+    <view class="userinfo">
+      <!-- <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo">获取头像昵称</button>
+      <block wx:else> -->
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+      <!-- </block> -->
+    </view>
+    <!-- 会员和有效积分 -->
+
+    <view>
+      <text class='member_one'>{{member.LevelName}}</text>
+      <text class='score_text'>积分 {{Score}}</text>
+    </view>
+    <image class='score_bg' src='/images/mine/score_bg.png'></image>
+
+  </view>
+  <!-- 头部的底层椭圆 -->
+  
+  <view class='bg-border'>
+   <image src='/images/mine/ellipse.png' class='ellipse_img'></image>
+  </view>
+  <view class='enptybg'></view>
+  <!-- 我的订单部分 -->
+  <view class='content'>
+    <navigator hover-class="none" url="/pages/order-list/order-list">
+      <view class='content-title'>
+        <image class='left_icon' src='/images/mine/myOrder.png'></image>
+        <text class='left_text'>我的订单</text>
+        <view>
+          <text class='content-title-text'>查看全部订单</text>
+          <image class='content-title-right' src='/images/mine/right.png'> </image>
+        </view>
+      </view>
+    </navigator>
+  </view>
+  <!-- 订单状态 -->
+  <view class='content-tabBar'>
+    <block wx:for="{{orderIconList}}">
+      <navigator class='content-box' hover-class="none" url="/pages/order-list/order-list?type={{item.type}}">
+        <image class="content-box-icon" src="{{item.icon}}" background-size="cover"></image>
+        <text class="content-box-name">{{item.name}}</text>
+      </navigator>
+    </block>
+  </view>
+
+  <!-- 会员开卡 -->
+  <!-- <navigator url="index">
+      <view class='foot-column' bindtap=''>
+        <image class='left_icon' src='/images/mine/openCard.png'></image>
+        <text class='left_text2'>会员开卡</text>
+        <image class='content-title-right' src='/images/mine/right.png'> </image>
+      </view>
+  </navigator> -->
+
+  <!-- 会员邀请 -->
+  <block wx:if="{{userInfo.assistantCode}}">
+    <view>
+      <view class='foot-column' bindtap="addQrcode">
+        <image class='left_icon' src='/images/mine/member.png'></image>
+        <text class='left_text3'>会员邀请</text>
+        <image class='content-title-right-icon' src='/images/mine/invite_icon.png'> </image>
+      </view>
+    </view>
+  </block>
+
+  <!-- 会员权益 -->
+  <!--<navigator url="">
+        <view class='foot-column'>
+          <image class='left_icon' src='/images/mine/benefit.png'></image>
+          <text class='left_text2'>会员权益</text>
+          <image class='content-title-right' src='/images/mine/right.png'> </image>
+        </view>
+  </navigator> -->
+  <!-- 附近门店 -->
+  <navigator url="/pages/map/map">
+    <view class='foot-column'>
+      <image class='left_icon' src='/images/mine/shop.png'></image>
+      <text class='left_text2'>附近门店</text>
+      <image class='content-title-right' src='/images/mine/right.png'></image>
+    </view>
+  </navigator>
+
+  <!--客服电话  -->
+
+  <view class='foot-column' data-tel="{{TelphoneNum}}" catchtap='telHandler'>
+    <image class='left_icon' src='/images/mine/service.png'></image>
+    <text class='text_tel'>客服电话</text>
+    <text class='text_num'>{{TelphoneNum}}</text>
+    <image class='content-title-right' src='/images/mine/right.png'></image>
+  </view>
+</view>
+
+<!-- 会员邀请的遮罩层效果 -->
+<view class="box" hidden="{{ifHidden}}">
+  <view class='wrap'>
+    <view class='mini_icon' style='background:url({{qrcodeImg}})center no-repeat white;border-radius:50%;background-size:405rpx 405rpx;'>
+    </view>
+    <!-- <image class='mini_icon' src='{{qrcodeImg}}'></image> -->
+    <image bindtap="delete" class='delete' src='/images/icons/delete.png'></image>
+  </view>
+</view>

@@ -1,0 +1,47 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/trend/trend",
+    "pages/goodsPic/goodsPic",
+    "pages/mine/mine",
+    "pages/order-list/order-list",
+    "pages/goodsList/goodsList",
+    "pages/payment/goPay/goPay",
+    "pages/order/details/details",
+    "pages/order/confirm/confirm",
+    "pages/picAndtxt/picAndtxt",
+    "pages/detail/detail",
+    "pages/payment/paySuccess/paySuccess",
+    "pages/map/map"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#000000",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "white",
+    "onReachBottomDistance": 300
+  },
+  "tabBar": {
+    "color": "#969696",
+    "selectedColor": "#ffffff",
+    "borderStyle": "#ffffff",
+    "backgroundColor": "#000000",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "images/icons/index.png",
+        "selectedIconPath": "images/icons/index2.png"
+      },
+      {
+        "pagePath": "pages/trend/trend",
+        "iconPath": "images/icons/trend.png",
+        "selectedIconPath": "images/icons/trend2.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "iconPath": "images/icons/mine.png",
+        "selectedIconPath": "images/icons/mine2.png"
+      }
+    ]
+  }
+}

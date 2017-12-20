@@ -1,0 +1,8 @@
+<template name="image_map">
+  <view class='image_map'>
+    <image mode="widthFix" src="{{imgList}}"></image>
+    <block wx:for="{{urlList}}" wx:for-index="idx" wx:for-item="item" wx:key="idx">
+         <navigator hover-class="none" url='{{item}}' style='{{positionList[idx]}}'></navigator>
+    </block>
+  </view>
+</template>

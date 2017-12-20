@@ -1,0 +1,146 @@
+/* pages/order/details/details.wxss */
+@import "../../template/orderDetails/orderDetails.wxss";
+
+.add {
+  width: 100%;
+  /* height: 220rpx;  */
+  background-color: #fff;
+  top: 0;
+  padding: 18rpx 30rpx;
+  border-bottom: 2rpx solid #dadada;
+  z-index: 10000;
+  font-size: 27.5rpx;
+}
+.add text{
+    font-size: 27.5rpx;
+}
+.add_show {
+  height: 40rpx;
+}
+
+/* 订单列表 */
+
+.content-item {
+  /* margin-top: 236rpx; */
+  z-index: 990;
+}
+
+/* 交易流水 */
+
+.tradingFlow {
+  width: 100%;
+  padding: 25rpx 0 30rpx 30rpx;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.flow_text {
+  font-size: 30rpx;
+  color: #898989;
+}
+
+.add_txt {
+  float:  left;
+  width:  600rpx;
+}
+
+.add_name_txt {
+  float: left;
+  color: #a8a8a8;
+  font-size: 28rpx;
+}
+
+.add_showadd {
+  overflow: hidden;
+  width: 100%;
+}
+
+.add_name {
+  box-sizing: border-box;
+  width: 200rpx;
+  color: #a8a8a8;
+  font-size: 27rpx;
+}
+
+.add_people {
+  letter-spacing: 9.9rpx;
+}
+
+.container-box {
+  width: 100%;
+  height: 220rpx;
+  background-color: #fff;
+  /* position: fixed; */
+  top: 0;
+  padding: 18rpx;
+  border-bottom: 2rpx solid #dadada;
+  z-index: 10000;
+}
+
+.img-box {
+  /* padding: 32rpx; */
+  background-color: #fff;
+  border-bottom: 1rpx solid #e5e5e5;
+  position: relative;
+  height: 150rpx;
+  width: 150rpx;
+  margin: 0 auto;
+}
+
+.img-box image {
+  width: 100%;
+  height: 100%;
+  background-color: #f9f9f9;
+}
+
+.input-row {
+  margin: 30rpx auto;
+  border-bottom: 1rpx solid #e5e5e5;
+  border-top: 1rpx solid #e5e5e5;
+  display: flex;
+  align-items: center;
+  height: 88rpx;
+  padding: 0 32rpx;
+  background-color: #fff;
+  font-size: 34rpx;
+  color: #000;
+}
+
+.input-row input {
+  margin-left: 100rpx;
+  flex: 1;
+}
+
+.mybtn {
+  width: 686rpx;
+  margin: 60rpx auto;
+}
+
+.mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+.canvas-box {
+  position: fixed;
+  top: 999999rpx;
+  left: 0;
+}
+
+.text {
+  position: absolute;
+  top: 155rpx;
+  color: #aaa8a9;
+  font-size: 25rpx;
+  z-index: 100;
+  display: inline-block;
+  width: 150rpx;
+  height: 40rpx;
+  text-align: center;
+  left: 50%;
+  margin-left: -75rpx;
+}

@@ -1,0 +1,46 @@
+<import src="/moduleTemplate/slides/slides.wxml" />
+<!-- 轮播 -->
+<import src="/moduleTemplate/image_map/image_map.wxml" />
+<!-- 热区 -->
+<import src="/moduleTemplate/pro_list/pro_list.wxml" />
+<!-- 商品列表 -->
+<import src="/moduleTemplate/video/video.wxml" />
+<!-- 视频 -->
+<import src="/moduleTemplate/pic_act/pic_act.wxml" />
+<!--图文 -->
+
+<block wx:for="{{moduleDataArr}}" wx:key='idx' wx:for-index="idx" wx:for-item="item">
+  <!--轮播  -->
+  <block wx:if="{{item.moduleName== 'slides'}}">
+    <template is="slides" data="{{...item}}" />
+  </block>
+  
+  <!--热区  -->
+  <block wx:elif="{{item.moduleName=='image_map'}}">
+    <template is="image_map" data='{{...item}}' />
+  </block>
+  <!--图文  -->
+  <block wx:elif="{{item.moduleName=='pic_act'}}">
+    <template is="pic_act" data='{{...item}}' />
+  </block>
+
+  <!--商品列表  -->
+  <block wx:elif="{{item.moduleName=='pro_list'}}">
+    <view class='index_goodsList'>
+      <block wx:for="{{item.singleData}}" wx:for-index="index" wx:for-item="goodsItem" wx:key='index'>
+        <template is="pro_list" data="{{...goodsItem}}" />
+      </block>
+    </view>
+  </block>
+  <!--商品  -->
+  <block wx:else>
+     <template is="video" data='{{...item}}' /> 
+  </block>
+</block>
+
+<!--商品列表 -->
+<view class='index_goodsList'>
+   <block wx:for="{{goodsItem}}" wx:for-index="index" wx:for-item="goodsItem" wx:key='index'>
+       <template is="pro_list" data="{{...goodsItem}}" />
+   </block>
+</view>

@@ -1,0 +1,77 @@
+/* pages/goodsPic/goodsPic.wxss */
+.container
+{
+   padding: 28rpx; 
+   width: 100%;
+}
+
+.build-img{
+  width:694px; 
+  height:1000px;
+}
+
+.show-img{
+  width: 100%;
+}
+
+.goods_bg
+{
+   width: 100%;
+   height: 850rpx;
+}
+.goods_pic
+{
+  width: 100%;
+  height: 824rpx;
+  border: 2rpx solid #919191;
+}
+.goods_footer
+{
+  width: 100%;
+  height: 90rpx;
+  line-height: 90rpx;
+  background: #000;
+  opacity: 0.6;
+  margin-top: -102rpx;
+  margin-left: 1rpx; 
+
+}
+.left
+{
+  color: #fff;
+  font-size: 38rpx;
+  z-index: 100;
+  margin-left: 20rpx;
+}
+.right
+{
+  color: #fff;
+  font-size: 52rpx;
+  margin-left: 85rpx;
+}
+.center_pic
+{
+  width: 200rpx;
+  height: 200rpx;
+  margin-top: 28rpx;
+  position: relative;
+  left: 80rpx; 
+}
+.center_text
+{
+  font-size: 34rpx;
+  color: #898989;
+  position: relative;
+  left: 310rpx;
+  top: -126rpx;
+}
+.goods_btn
+{
+  width: 100%;
+  height: 120rpx;
+  line-height: 120rpx;
+  background: #f83c4b;
+  color: #fff;
+  font-weight:500;
+  font-size: 40rpx;
+}

@@ -1,0 +1,77 @@
+<template name="order-item">
+  <view class='itemAll'>
+
+    <view class='order-item-contain'>
+      <navigator url='/pages/order/details/details?orderNo={{orderNo}}&orderStatus={{orderStatus}}'>
+        <view class='order-item-box'>
+          <view class='order-item-head-box'>
+            <view class='order-item-head-detail-box'>
+              <text class='order-item-order-sn'>{{orderNo}}</text>
+            </view>
+            <text class='order-item-mark'>{{orderStatusName}}</text>
+          </view>
+
+          <view class='order-item-inner-box' wx:for="{{mallOrderDetailVos}}" wx:key="{{index}}">
+            <view>
+              <image class="order-item-img" src="{{item.itemImageUrl}}" mode="widthFix"></image>
+            </view>
+
+            <view class='order-item-content-box'>
+              <view>
+                <text class='order-item-name'>{{item.productName}}</text>
+                <text class='order-item-price'>￥{{item.itemSalePrice}}</text>
+                <text class='order-item-discount-price'>￥{{item.itemTagPrice}}</text>
+              </view>
+              <view class='order-item-sub-content-box'>
+                <text class='order-item-color'>{{item.mallColorName}}</text>
+                <text class='order-item-size'>{{item.sizeNo}}码</text>
+                <text class='order-item-num'>X{{item.quantity}}</text>
+              </view>
+            </view>
+
+          </view>
+        </view>
+      </navigator>
+    </view>
+    <view class='order-item-total'>
+      <text class='order-item-cost'>￥{{orderTotalAmount}}</text>
+      <text class='order-item-totalPrice'>合计</text>
+      <text class='order-item-goodsNum'>共{{quantity}}件商品</text>
+    </view>
+
+    <!--待付款： 取消订单，继续付款  -->
+    <block wx:if="{{orderStatus==1}}">
+      <view class='order-item-btn'>
+        <button type="default" data-orderNo="{{orderNo}}" data-orderStatus="{{orderStatus}}" data-payFlag="{{payFlag}}" bindtap="cancelOrder" plain="true" hover-class="other-button-hover" class='orderBtn'>取消订单</button>
+        <button type="default" data-orderNo="{{orderNo}}" bindtap="repay" plain="true" hover-class="other-button-hover" class='orderBtn'>继续付款</button>
+      </view>
+    </block>
+
+    <!--待发货：取消订单  -->
+    <block wx:elif="{{orderStatus==2}}">
+      <view class='order-item-btn'>
+        <button data-orderNo="{{orderNo}}" data-orderStatus="{{orderStatus}}" data-payFlag="{{payFlag}}" type="default" bindtap="cancelOrder" plain="true" hover-class="other-button-hover" class='orderBtn'>取消订单</button>
+      </view>
+    </block>
+
+    <!--待收货：确认收货  -->
+    <block wx:elif="{{orderStatus==3}}">
+      <view class='order-item-btn'>
+        <button type="default" bindtap="default" plain="true" hover-class="other-button-hover" class='orderBtn'>确认收货</button>
+      </view>
+    </block>
+
+
+    <!--已取消货：删除订单  -->
+    <block wx:elif="{{orderStatus==80}}">
+     <!--  <view class='order-item-btn'>
+        <button data-orderNo="{{orderNo}}" data-orderStatus="{{orderStatus}}" data-payFlag="{{payFlag}}" type="default" bindtap="deleteOrder" plain="true" hover-class="other-button-hover" class='orderBtn'>删除订单</button>
+      </view>-->
+    </block>
+
+
+    <!--己收货：无  -->
+    <block wx:else="{{orderStatus==4}}">
+    </block>
+  </view>
+</template>

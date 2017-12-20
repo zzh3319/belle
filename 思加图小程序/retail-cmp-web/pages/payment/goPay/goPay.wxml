@@ -1,0 +1,5 @@
+<!--pages/payment/payment.wxml-->
+<view class='container'>
+    <image class='pay_icon' src='/images/icons/pay.png'></image>
+    <text class='pay_text'>正在跳转微信支付页面</text>
+</view>
